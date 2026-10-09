@@ -67,6 +67,9 @@ self.addEventListener('fetch', (evento) => {
 
   if (peticion.mode === 'navigate') {
     evento.respondWith(navegacion(peticion))
+  } else if (esMismoOrigen && url.pathname === '/config.js') {
+    // La configuración puede cambiar en el servidor: siempre se intenta la red
+    evento.respondWith(redPrimero(peticion, CACHE_APP))
   } else if (url.pathname.startsWith('/api/')) {
     evento.respondWith(redPrimero(peticion, CACHE_API))
   } else if (url.pathname.startsWith('/uploads/')) {

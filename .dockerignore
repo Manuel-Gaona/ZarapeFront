@@ -1,0 +1,6 @@
+# Lo que NO debe entrar en la imagen
+.git
+.github
+node_modules
+dist
+*.local

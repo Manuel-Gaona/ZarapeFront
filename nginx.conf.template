@@ -1,0 +1,36 @@
+# Configuración de nginx. Al arrancar el contenedor, ${API_URL} se reemplaza
+# por el valor de la variable de entorno del mismo nombre.
+
+server {
+    listen 80;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Configuración que la app lee al iniciar (ver src/api/cliente.js).
+    # Se genera aquí para poder cambiar la URL de la API sin recompilar.
+    location = /config.js {
+        default_type application/javascript;
+        add_header Cache-Control "no-store";
+        return 200 'window.__ZARAPE__ = { API_URL: "${API_URL}" };';
+    }
+
+    # El service worker y el index nunca se guardan en la caché del navegador:
+    # así una versión nueva se detecta de inmediato.
+    location = /sw.js {
+        add_header Cache-Control "no-cache";
+    }
+
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+
+    # Los archivos compilados llevan un hash en el nombre: se pueden guardar siempre
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # Es una SPA: cualquier otra ruta la resuelve React desde index.html
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

@@ -1,0 +1,36 @@
+# Stack de Docker Swarm para el frontend de El Zarape.
+# Se despliega desde Portainer (Stacks > Add stack > Repository).
+#
+# Variables que se pueden definir en Portainer (todas opcionales):
+#   APP_DOMAIN   dominio del sitio   (por defecto zarape.705905.xyz)
+#   API_URL      URL de la API       (por defecto https://zarapeapi.705905.xyz)
+
+services:
+  web:
+    image: ghcr.io/manuel-gaona/zarapefront:${IMAGE_TAG:-latest}
+    environment:
+      # Se entrega a la app al arrancar: cambiarla no requiere recompilar
+      - API_URL=${API_URL:-https://zarapeapi.705905.xyz}
+    networks:
+      - traefik_proxy
+    # Sin "ports": el único acceso es a través de Traefik
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      update_config:
+        # Primero arranca la versión nueva y luego se retira la anterior
+        order: start-first
+        failure_action: rollback
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.zarape-web.rule=Host(`${APP_DOMAIN:-zarape.705905.xyz}`)"
+        - "traefik.http.routers.zarape-web.entrypoints=websecure"
+        - "traefik.http.routers.zarape-web.tls.certresolver=le"
+        - "traefik.http.services.zarape-web.loadbalancer.server.port=80"
+
+networks:
+  traefik_proxy:
+    external: true

@@ -3,7 +3,11 @@
 
 import { leerSesion } from './sesion'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+// Dirección de la API, por orden de prioridad:
+//   1. La que define el servidor en producción (public/config.js)
+//   2. La del archivo .env (desarrollo)
+const API_URL =
+  window.__ZARAPE__?.API_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 // Evento que se lanza cuando la API responde que la sesión ya no es válida
 export const EVENTO_SESION_EXPIRADA = 'zarape:sesion-expirada'
