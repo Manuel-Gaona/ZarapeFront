@@ -1,0 +1,192 @@
+/* Panel de administración */
+
+.admin {
+  --ancho-menu: 310px;
+  min-height: 100vh;
+  background: var(--mushroom);
+}
+
+/* ---------- Menú lateral ---------- */
+
+.admin-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  width: var(--ancho-menu);
+  max-width: 85vw;
+  padding: 14px 20px 20px;
+  overflow-y: auto;
+  background: var(--driftwood);
+  color: var(--blanco);
+  /* Cerrado: fuera de la pantalla y sin poder recibir el foco del teclado */
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition:
+    transform 0.25s,
+    visibility 0.25s;
+}
+
+.admin-menu-abierto .admin-menu {
+  transform: none;
+  visibility: visible;
+}
+
+.admin-menu-icono {
+  align-self: center;
+  width: 56px;
+}
+
+.admin-menu-titulo {
+  margin-top: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.admin-menu-usuario {
+  padding-bottom: 8px;
+  border-bottom: 4px solid var(--red-pepper);
+  font-size: 0.9rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.admin-menu-seccion {
+  margin: 22px 0 6px 10px;
+  font-size: 1.3rem;
+}
+
+.admin-menu-lista {
+  margin: 0;
+  padding-left: 44px;
+  font-size: 1.2rem;
+  line-height: 2.1;
+}
+
+.admin-menu a {
+  color: var(--blanco);
+  text-decoration: none;
+}
+
+.admin-menu a:hover,
+.admin-menu a.active {
+  text-decoration: underline;
+}
+
+.admin-menu a.active {
+  font-weight: bold;
+}
+
+.admin-menu-pie {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: auto;
+  padding: 24px 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.admin-menu-pie button {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--blanco);
+  text-decoration: underline;
+}
+
+/* ---------- Contenido ---------- */
+
+.admin-principal {
+  transition: margin-left 0.25s;
+}
+
+.boton-hamburguesa {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 6px 0;
+  border: none;
+  background: none;
+  transform: translateY(-50%);
+}
+
+.boton-hamburguesa span {
+  display: block;
+  width: 44px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--negro);
+}
+
+.admin-contenido {
+  padding: 36px 40px 56px;
+}
+
+.admin-inicio {
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.admin-inicio img {
+  width: min(100%, 400px);
+}
+
+/* ---------- Catálogos ---------- */
+
+.catalogo-barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 40px 52px;
+}
+
+.catalogo-busqueda {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.catalogo-busqueda input {
+  flex: 0 1 362px;
+  min-width: 0;
+  padding: 8px 6px;
+  border: 1px solid #767676;
+  border-radius: 2px;
+  font-size: 1.25rem;
+}
+
+/* En pantallas anchas el menú empuja el contenido, como en el mockup */
+@media (min-width: 1000px) {
+  .admin-menu-abierto .admin-principal {
+    margin-left: var(--ancho-menu);
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-contenido {
+    padding: 20px 12px 40px;
+  }
+
+  .catalogo-barra {
+    margin: 0 0 24px;
+  }
+
+  .catalogo-busqueda {
+    flex: 1 1 100%;
+    gap: 12px;
+  }
+
+  .catalogo-busqueda input {
+    flex: 1;
+  }
+}

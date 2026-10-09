@@ -1,0 +1,557 @@
+/* Sitio público: inicio, menú, carrito y login */
+
+.sitio {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--blanco);
+}
+
+.sitio-contenido {
+  flex: 1;
+}
+
+/* ---------- Menú de navegación ---------- */
+
+.menu-publico {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 20px;
+  background: var(--blanco);
+}
+
+.menu-publico-logo img {
+  display: block;
+  height: 54px;
+}
+
+.menu-publico-enlaces {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 32px;
+}
+
+.menu-publico-enlaces a {
+  padding: 8px 24px;
+  border-radius: 999px;
+  color: #222;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.menu-publico-enlaces a:hover {
+  background: var(--mushroom);
+}
+
+/* Enlace de la página actual (clase que agrega NavLink) */
+.menu-publico-enlaces a.active {
+  background: var(--red-pepper);
+  color: var(--blanco);
+}
+
+.menu-publico-carrito {
+  position: relative;
+  display: block;
+  padding: 4px;
+}
+
+.menu-publico-carrito img {
+  display: block;
+  width: 48px;
+}
+
+.carrito-contador {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--red-pepper);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ---------- Pie de página ---------- */
+
+.pie {
+  padding: 28px 40px 16px;
+  background: var(--driftwood);
+  color: var(--blanco);
+  text-align: center;
+}
+
+.pie-titulo {
+  font-size: 2.2rem;
+}
+
+.pie-lema {
+  margin: 16px 0;
+  font-size: 1.6rem;
+}
+
+.pie-enlace {
+  display: inline-block;
+  margin: 8px 0;
+  color: var(--blanco);
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.pie-enlace:hover {
+  text-decoration: underline;
+}
+
+.pie-instalar {
+  display: block;
+  margin: 8px auto;
+  padding: 8px 20px;
+  border: 2px solid var(--blanco);
+  border-radius: 999px;
+  background: none;
+  color: var(--blanco);
+}
+
+.pie-linea {
+  margin: 12px 0;
+  border: none;
+  border-top: 3px solid var(--blanco);
+}
+
+/* ---------- Inicio ---------- */
+
+.portada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: min(640px, 70vh);
+  padding: 40px 24px;
+  /* La capa oscura encima de la foto hace que el texto se pueda leer */
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+    url('../assets/hero.jpg') center / cover;
+  color: var(--mushroom);
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.portada-titulo {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+}
+
+.portada-texto {
+  max-width: 1100px;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: bold;
+}
+
+.seccion {
+  padding: 28px 24px 40px;
+}
+
+.seccion-mushroom {
+  background: var(--mushroom);
+}
+
+.seccion-onion {
+  background: var(--onion);
+}
+
+.seccion-titulo {
+  max-width: 820px;
+  margin: 0 auto 32px;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  text-align: center;
+}
+
+.esencia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32px 72px;
+  max-width: 1150px;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.esencia img {
+  width: min(100%, 410px);
+  border-radius: 4px;
+}
+
+.esencia div {
+  flex: 1 1 380px;
+}
+
+.esencia p + p {
+  margin-top: 1.4em;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px 80px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.galeria img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.pasos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0;
+  list-style: none;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.pasos li {
+  flex: 0 1 300px;
+}
+
+.pasos img {
+  width: 190px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Menú (alimentos, bebidas y combos) ---------- */
+
+.menu {
+  min-height: 60vh;
+  padding: 56px 24px 96px;
+  background: var(--onion);
+}
+
+.menu-estado {
+  margin-bottom: 24px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.menu-rejilla {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px 40px;
+  max-width: 1250px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+.menu-rejilla-combos {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .menu-rejilla {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .menu-rejilla-combos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 190px;
+  padding: 20px 16px 32px;
+  border-radius: 32px;
+  background: var(--mushroom);
+  text-align: center;
+}
+
+.menu-rejilla-combos .tarjeta {
+  max-width: 270px;
+}
+
+.tarjeta-foto {
+  width: 114px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.menu-rejilla-combos .tarjeta-foto {
+  width: 152px;
+  height: 108px;
+}
+
+.tarjeta-nombre {
+  /* Empuja los datos hacia abajo para que todas las tarjetas queden alineadas */
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: normal;
+}
+
+.menu-rejilla-combos .tarjeta-nombre {
+  flex: none;
+  font-weight: bold;
+}
+
+.tarjeta-detalles {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.4;
+}
+
+.tarjeta-datos {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 14px 16px;
+  margin: 4px 0 16px;
+}
+
+.tarjeta-datos dt {
+  text-align: right;
+}
+
+.tarjeta-datos dd {
+  margin: 0;
+  text-align: left;
+}
+
+/* Recuadros cafés de precio, cantidad y total */
+.tarjeta-datos dd,
+.tarjeta-datos input {
+  color: var(--blanco);
+}
+
+.tarjeta-datos dd {
+  display: inline-block;
+  min-width: 36px;
+  padding: 3px 6px;
+  background: var(--driftwood);
+  justify-self: start;
+}
+
+.tarjeta-datos dd:has(input) {
+  padding: 0;
+}
+
+.tarjeta-datos input {
+  width: 56px;
+  padding: 3px 6px;
+  border: none;
+  background: var(--driftwood);
+}
+
+/* ---------- Carrito ---------- */
+
+.carrito {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+}
+
+.carrito-vacio {
+  text-align: center;
+}
+
+.carrito-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carrito-articulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: var(--mushroom);
+}
+
+.carrito-articulo img {
+  width: 72px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.carrito-articulo-datos {
+  display: flex;
+  flex: 1 1 180px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carrito-articulo input {
+  width: 64px;
+  padding: 4px 6px;
+}
+
+.carrito-articulo-total {
+  min-width: 80px;
+  text-align: right;
+}
+
+.carrito-total {
+  margin-top: 24px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+/* ---------- Login ---------- */
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px 64px;
+  background: url('../assets/hero.jpg') center / cover;
+}
+
+.login-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: min(100%, 495px);
+  padding: 24px 32px 40px;
+  border-radius: 36px;
+  background: var(--mushroom);
+}
+
+.login-tarjeta h2 {
+  font-size: 2.9rem;
+}
+
+.login-tarjeta img {
+  width: 190px;
+}
+
+.login-tarjeta label {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 365px);
+  font-size: 1.45rem;
+}
+
+.login-tarjeta label span {
+  text-align: right;
+}
+
+.login-tarjeta input {
+  width: 100%;
+  padding: 6px 8px;
+  border: none;
+  background: var(--blanco);
+}
+
+.login-error {
+  color: var(--rojo-error);
+  font-weight: bold;
+  text-align: center;
+}
+
+.login-tarjeta .boton {
+  min-width: 176px;
+  padding-block: 12px;
+  font-size: 1.4rem;
+}
+
+/* ---------- Pantallas angostas (celulares) ---------- */
+
+@media (max-width: 600px) {
+  .menu-publico {
+    padding-inline: 10px;
+  }
+
+  .menu-publico-enlaces {
+    gap: 4px;
+  }
+
+  .menu-publico-enlaces a {
+    padding: 6px 10px;
+    font-size: 1rem;
+  }
+
+  .menu-publico-logo img {
+    height: 44px;
+  }
+
+  .menu-publico-carrito img {
+    width: 36px;
+  }
+
+  .galeria {
+    gap: 16px;
+  }
+
+  .esencia {
+    font-size: 1.15rem;
+  }
+
+  .menu {
+    padding: 32px 12px 56px;
+  }
+
+  .menu-rejilla {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px;
+  }
+
+  .menu-rejilla-combos {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta {
+    padding-inline: 8px;
+    border-radius: 24px;
+  }
+
+  .pie-titulo {
+    font-size: 1.6rem;
+  }
+
+  .pie-lema,
+  .pie-enlace {
+    font-size: 1.2rem;
+  }
+
+  .login-tarjeta label {
+    grid-template-columns: 1fr;
+  }
+
+  .login-tarjeta label span {
+    text-align: left;
+  }
+
+  .login-tarjeta h2 {
+    font-size: 2.2rem;
+  }
+}

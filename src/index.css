@@ -1,0 +1,164 @@
+/* Estilos base de toda la aplicación */
+
+:root {
+  /* Paleta C del proyecto */
+  --mushroom: #fef2e4;
+  --onion: #fd974f;
+  --red-pepper: #c60000;
+  --driftwood: #805a3b;
+
+  /* Colores de apoyo que aparecen en los mockups */
+  --blanco: #ffffff;
+  --negro: #000000;
+  --gris-celda: #d9d9d9;
+  --gris-boton: #737373;
+  --morado-boton: #8c52ff;
+  --texto-suave: #6b6b6b;
+  --rojo-error: #b00020;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--negro);
+  background: var(--mushroom);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Contorno visible al navegar con el teclado */
+:focus-visible {
+  outline: 3px solid var(--morado-boton);
+  outline-offset: 2px;
+}
+
+/* ---------- Barra roja superior (sitio público y panel) ---------- */
+
+.barra-roja {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  padding: 8px 64px;
+  background: var(--red-pepper);
+  color: var(--blanco);
+  text-align: center;
+}
+
+.barra-roja h1 {
+  font-size: 1.75rem;
+}
+
+@media (max-width: 600px) {
+  .barra-roja h1 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ---------- Botones ---------- */
+
+.boton {
+  display: inline-block;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1.25rem;
+  color: var(--blanco);
+  text-decoration: none;
+  text-align: center;
+}
+
+.boton:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.boton-cafe {
+  background: var(--driftwood);
+  border-radius: 10px;
+}
+
+.boton-rojo {
+  background: var(--red-pepper);
+  border-radius: 999px;
+  padding: 8px 28px;
+  font-weight: bold;
+}
+
+.boton-morado {
+  background: var(--morado-boton);
+}
+
+.boton-gris {
+  background: var(--gris-boton);
+}
+
+.boton-chico {
+  border: 1px solid #8a8a8a;
+  background: var(--gris-celda);
+  padding: 4px 10px;
+  font-size: 0.9rem;
+}
+
+.boton-enlace {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #0645ad;
+  text-decoration: underline;
+}
+
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 32px;
+  margin-top: 20px;
+}
+
+/* ---------- Avisos ---------- */
+
+.aviso-sin-conexion {
+  padding: 8px 16px;
+  background: var(--driftwood);
+  color: var(--blanco);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.aviso-error {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-left: 6px solid var(--red-pepper);
+  background: var(--blanco);
+}
